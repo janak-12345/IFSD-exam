@@ -1,0 +1,111 @@
+[11:37 am, 21/06/2023] +91 94811 31351: const prompt = require("prompt-sync")();
+class Student {
+    constructor(name, ID) {
+      this.name = name;
+      this.ID = ID;
+    }
+  
+    displayInfo() {
+      console.log(`Name: ${this.name}`);
+      console.log(`ID: ${this.ID}`);
+    }
+  }
+  
+  class NStudents {
+    constructor() {
+      this.students = [];
+      this.n;
+    }
+
+    numstudent()
+    {
+       
+  // Accept number of students
+  this.n= parseInt(prompt("Enter the number of students:")); 
+    }
+  student_input()
+  {
+    // Accept user inputs for each student
+  for (let i = 0; i < this.n; i++) {
+    this.students[i]=new Student();
+    this.students[i].name = prompt(`Enter name for student ${i+1}:`);
+    this.students[i].ID = parseInt(prompt(`Enter ID for student ${i+1}:`));
+  }
+  }
+    // add…
+[2:53 pm, 21/06/2023] +91 94811 31351: <!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      const taskArray = [
+        { player: 'player1', score: 18 },
+        { player: 'player2', score: 19 },
+        { player: 'player3', score: 18 }
+      ];
+
+      function addNewTask() {
+        const newTaskPlayer = document.getElementById('player-input').value;
+        const newTaskScore = document.getElementById('score-input').value;
+        const newTask = {
+          player: newTaskPlayer,
+          score: newTaskScore
+        };
+        taskArray.push(newTask);
+        loadTable();
+      }
+
+      function deleteTask(index) {
+        taskArray.splice(index, 1);
+        loadTable();
+      }
+
+      function loadTable() {
+        const tableElement = document.getElementById('table');
+        tableElement.innerHTML = '';
+
+        const headerRowElement = document.createElement('tr');
+        headerRowElement.appendChild(createElement('th', 'Index'));
+        headerRowElement.appendChild(createElement('th', 'Player Name'));
+        headerRowElement.appendChild(createElement('th', 'Score'));
+        headerRowElement.appendChild(createElement('th', 'Action'));
+        tableElement.appendChild(headerRowElement);
+
+        for (let i = 0; i < taskArray.length; i++) {
+          const task = taskArray[i];
+          const rowElement = document.createElement('tr');
+          rowElement.appendChild(createElement('td', i));
+          rowElement.appendChild(createElement('td', task.player));
+          rowElement.appendChild(createElement('td', task.score));
+
+          const deleteButton = document.createElement('button');
+          deleteButton.innerText = 'Delete';
+          deleteButton.onclick = function() {
+            deleteTask(i);
+          };
+          rowElement.appendChild(createElement('td')).appendChild(deleteButton);
+          tableElement.appendChild(rowElement);
+        }
+      }
+
+      function createElement(tag, text) {
+        const element = document.createElement(tag);
+        element.innerText = text;
+        return element;
+      }
+    </script>
+  </head>
+
+  <body onload="loadTable();">
+    <h1>Task List</h1>
+    <table id="table"></table>
+    <hr>
+    <div>
+      <h1>New Task</h1>
+      Player Name: <input type="text" id="player-input" />
+      <br><br>
+      Score: <input type="number" id="score-input" />
+      <br><br>
+      <button onclick="addNewTask();">Add</button>
+    </div>
+  </body>
+</html>
